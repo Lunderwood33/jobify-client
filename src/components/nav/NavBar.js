@@ -7,13 +7,13 @@ export const NavBar = () => {
     return (
         <ul className="navbar">
             <li className="navbar__item">
-                Navigation link
+                Home
             </li>
             <li className="navbar__item">
-                Navigation link
+                Job Listings
             </li>
             <li className="navbar__item">
-                Navigation link
+                My Profile
             </li>
             {
                 (localStorage.getItem("lu_token") !== null) ?

@@ -5,10 +5,10 @@ import { NavBar } from "./nav/NavBar"
 import { Login } from "./auth/Login"
 import { Register } from "./auth/Register"
 
-export const LevelUp = () => (
+export const Jobify = () => (
     <>
         <Route render={() => {
-            if (localStorage.getItem("lu_token")) {
+            if (localStorage.getItem("jobify_token")) {
                 return <>
                     <Route>
                         <NavBar />

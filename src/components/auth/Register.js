@@ -11,7 +11,15 @@ export const Register = () => {
     const verifyPassword = useRef()
     const passwordDialog = useRef()
     const history = useHistory()
+    const isBusiness = useRef()
 
+    // const handleCheckbox = event => {
+    //     let state = state;
+    //     state.isBusiness[event.target.value] = event.target.checked;
+    //     this.setState(state)
+
+    //     console.log(event.target.value);
+    // }
     const handleRegister = (e) => {
         e.preventDefault()
 
@@ -21,8 +29,13 @@ export const Register = () => {
                 "first_name": firstName.current.value,
                 "last_name": lastName.current.value,
                 "bio": bio.current.value,
-                "password": password.current.value
+                "password": password.current.value,
+                "isBusiness": isBusiness.current.checked
             }
+            
+           
+
+            
 
             return fetch("http://127.0.0.1:8000/register", {
                 method: "POST",
@@ -35,15 +48,17 @@ export const Register = () => {
                 .then(res => res.json())
                 .then(res => {
                     if ("token" in res) {
-                        localStorage.setItem("lu_token", res.token)
+                        localStorage.setItem("jobify_token", res.token)
                         history.push("/")
                     }
                 })
         } else {
             passwordDialog.current.showModal()
         }
+        
     }
-
+    
+    
     return (
         <main style={{ textAlign: "center" }}>
 
@@ -75,8 +90,12 @@ export const Register = () => {
                     <input ref={verifyPassword} type="password" name="verifyPassword" className="form-control" placeholder="Verify password" required />
                 </fieldset>
                 <fieldset>
-                    <label htmlFor="verifyPassword"> Verify Password </label>
-                    <textarea ref={bio} name="bio" className="form-control" placeholder="Let other gamers know a little bit about you..." />
+                    <label htmlFor="verifyPassword"> Tell Us About Yourself </label>
+                    <textarea ref={bio} name="bio" className="form-control" placeholder="Let other users know a little bit about you..." />
+                </fieldset>
+                <fieldset>
+                <label htmlFor="isBusiness"> Is this a business account? </label>
+                    <input ref={isBusiness} type="checkbox" name="isBusiness" value="yes"></input> Yes
                 </fieldset>
                 <fieldset style={{
                     textAlign: "center"

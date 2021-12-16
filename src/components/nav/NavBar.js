@@ -8,14 +8,23 @@ export const NavBar = () => {
     return (
         <ul className="navbar">
             <li className="navbar__item">
-                Home
-            </li>
+            <Link className="navbar__link" to ="/"
+                >
+                    Home
+                </Link>
+                </li>
             <li className="navbar__item">
-                Job Listings
-            </li>
+            <Link className="navbar__link" to ="/joblistings"
+                >
+                    Job Listings
+                </Link>
+                </li>
             <li className="navbar__item">
-                My Profile
-            </li>
+            <Link className="navbar__link" to ="/myprofile"
+                >
+                    My Profile
+                </Link>
+                </li>
             {
                 (localStorage.getItem("jobify_token") !== null) ?
                     <li className="nav-item">

@@ -19,3 +19,24 @@ export const createJobListing = (jobListing) => {
     })
 }
 
+export const jobListUsersFetcher = () => {
+    fetch(`http://localhost:8000/joblistings?companyId=${companyId}&_expand=company`)
+    .then(res => res.json())
+            .then((data) => {
+                setJoblisting(data)
+})
+}
+
+export const deleteJobListing = (jobListingId) => {
+    fetch(`http://localhost:8000/joblistings/${jobListingId} `, {
+        method: "DELETE",
+        headers: {
+            "Authorization": `Token ${localStorage.getItem("jobify_token")}`,
+            "Content-Type": "application/json"
+        }
+    })
+    .then(() => {
+        window.location.reload(false);
+    })
+}
+

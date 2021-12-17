@@ -1,6 +1,6 @@
 import react, { useEffect, useState } from "react";
 import { useHistory } from "react-router";
-import { getJobListings } from "./JobListingManager.js";
+import { getJobListings, deleteJobListing, jobListUsersFetcher } from "./JobListingManager.js";
 
 export const JobListingList = () => {
 
@@ -32,6 +32,10 @@ export const JobListingList = () => {
                         <p>Job Type: {jobListing.job_type.label}</p>
                         <p>Interested: {jobListing.interested}</p>
                         <p>Job Listing URL: {jobListing.url}</p>
+                        <button color="primary" onClick={() => {
+                            deleteJobListing(jobListing.id)
+                        }}>Delete</button>
+                        
                     </section>
                 ))
             }

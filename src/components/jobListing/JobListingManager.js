@@ -19,7 +19,7 @@ export const createJobListing = (jobListing) => {
     })
 }
 
-export const jobListUsersFetcher = () => {
+export const jobListUsersFetcher = (companyId) => {
     fetch(`http://localhost:8000/joblistings?companyId=${companyId}&_expand=company`)
     .then(res => res.json())
             .then((data) => {
@@ -40,3 +40,12 @@ export const deleteJobListing = (jobListingId) => {
     })
 }
 
+export const joinJobListing = jobListingId => {
+    return fetch(`http://localhost:8000/joblistings/${ jobListingId }/signup`, {
+        method: "POST",
+        headers:{
+            "Authorization": `Token ${localStorage.getItem("jobify_token")}`
+        }
+    })
+        .then(response => response.json())
+}

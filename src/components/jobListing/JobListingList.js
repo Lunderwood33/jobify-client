@@ -1,6 +1,6 @@
 import react, { useEffect, useState } from "react";
 import { useHistory } from "react-router";
-import { getJobListings, deleteJobListing, jobListUsersFetcher } from "./JobListingManager.js";
+import { getJobListings, deleteJobListing, joinJobListing, jobListUsersFetcher } from "./JobListingManager.js";
 
 export const JobListingList = () => {
 
@@ -30,11 +30,20 @@ export const JobListingList = () => {
                         <p>Wage: {jobListing.wage}</p>
                         <p>Company: {jobListing.company.bio}</p>
                         <p>Job Type: {jobListing.job_type.label}</p>
-                        <p>Interested: {jobListing.interested}</p>
                         <p>Job Listing URL: {jobListing.url}</p>
                         <button color="primary" onClick={() => {
                             deleteJobListing(jobListing.id)
                         }}>Delete</button>
+                        <div>
+                        <button className="btn btn-2"
+                                onClick={
+                                    () => {
+                                        joinJobListing(jobListing.id)
+                                            .then(() => getJobListings().then(jobListingsData => setJobListings(jobListingsData)))
+                                    }
+                                }
+                        >Join</button>
+                        </div>
                         
                     </section>
                 ))
